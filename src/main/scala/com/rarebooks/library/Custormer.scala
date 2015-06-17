@@ -24,8 +24,8 @@ class Customer(rareBooks: ActorRef, odds: Int, tolerance: Int)
         state = state.update(f)
         log.info(f"{} Book(s) found!", f.bookCards.size)
         requestBookInfo()
-      case f: BookNotFound
-        if state.model.notFound < state.model.tolerance =>
+
+      case f: BookNotFound if state.model.notFound < state.model.tolerance =>
         state = state.update(f)
         log.info(f"{} Book(s) not found! My tolerance is {}.",
           state.model.notFound, state.model.tolerance)
@@ -49,7 +49,7 @@ class Customer(rareBooks: ActorRef, odds: Int, tolerance: Int)
    * Method for requesting book information by topic.
    */
   private def requestBookInfo(): Unit =
-  rareBooks ! FindBookByTopic(Set(Asia))
+    rareBooks ! FindBookByTopic(Set(Asia))
 
   /**
    * Simulate customer picking topic to request. Based on the odds they will randomly
@@ -58,10 +58,10 @@ pick a viable topic, otherwise
    *
    * @return topic for book information request
    */
-//  private def pickTopic: Topic =
-//    if (Random.nextInt(100) < state.model.odds)
-//      viableTopics(Random.nextInt(viableTopics.size))
-//    else Unknown
+  //  private def pickTopic: Topic =
+  //    if (Random.nextInt(100) < state.model.odds)
+  //      viableTopics(Random.nextInt(viableTopics.size))
+  //    else Unknown
 
 }
 
@@ -100,8 +100,8 @@ object Customer {
         copy(model.copy(found = model.found + b.size), timeInMillis = d)
       case BookNotFound(_, d) =>
         copy(model.copy(notFound = model.notFound + 1), timeInMillis = d)
-      //      case Credit(d) =>
-      //        copy(model.copy(notFound = 0), timeInMillis = d)
+      case Credit(d) =>
+        copy(model.copy(notFound = 0), timeInMillis = d)
     }
   }
 

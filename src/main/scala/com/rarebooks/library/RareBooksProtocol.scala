@@ -102,7 +102,14 @@ object RareBooksProtocol {
   final case class BookNotFound(
                                  msg: String,
                                  dateInMillis: Long = Platform.currentTime) extends Msg
+
   final case class Complain(
-                                 dateInMillis: Long = Platform.currentTime) extends Msg
+                             dateInMillis: Long = Platform.currentTime) extends Msg
+
+  final case class Credit(
+                           dateInMillis: Long = Platform.currentTime) extends Msg
+
+  final case class GetCustomer(
+                                dateInMillis: Long = Platform.currentTime) extends Msg
 
 }

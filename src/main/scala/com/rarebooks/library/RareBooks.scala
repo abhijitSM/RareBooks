@@ -51,8 +51,12 @@ class RareBooks extends Actor with ActorLogging with Stash {
   }
 
   private def createLibrarian(): ActorRef = {
+<<<<<<< HEAD
 //    context.actorOf(Librarian.props(findBookDuration), "librarian")
     _
+=======
+    context.actorOf(Librarian.props(findBookDuration), "librarian")
+>>>>>>> Initial Commit
   }
 
 }
