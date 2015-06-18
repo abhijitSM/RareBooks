@@ -1,7 +1,6 @@
 package com.rarebooks.library
 
 import akka.actor._
-import com.rarebooks.library.RareBooksProtocol.{BookFound, BookNotFound}
 
 import scala.concurrent.duration.FiniteDuration
 
@@ -10,9 +9,9 @@ import scala.concurrent.duration.FiniteDuration
  */
 class Librarian(findBookDuration: FiniteDuration) extends Actor with ActorLogging with Stash {
 
-  import context.dispatcher
   import Librarian._
   import RareBooksProtocol._
+  import context.dispatcher
 
   override def receive: Receive = ready
 
@@ -54,8 +53,8 @@ class Librarian(findBookDuration: FiniteDuration) extends Actor with ActorLoggin
 
 object Librarian {
 
-  import RareBooksProtocol._
   import Catalog._
+  import RareBooksProtocol._
 
   final case class Done(
                          e: Either[BookNotFound, BookFound],

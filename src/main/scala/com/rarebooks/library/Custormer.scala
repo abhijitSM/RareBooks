@@ -1,8 +1,6 @@
 package com.rarebooks.library
 
-import akka.actor.{Props, Actor, ActorLogging, ActorRef}
-
-import scala.util.Random
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 
 /**
  * Created by abhijitsingh on 18/06/15.

@@ -1,6 +1,5 @@
 package com.rarebooks.library
 
-import akka.actor.Actor.Receive
 import akka.actor._
 import com.rarebooks.library.RareBooksProtocol.Msg
 
@@ -9,9 +8,10 @@ import com.rarebooks.library.RareBooksProtocol.Msg
  */
 class RareBooks extends Actor with ActorLogging with Stash {
 
-  import context.dispatcher
-  import scala.concurrent.duration._
   import RareBooks._
+  import context.dispatcher
+
+  import scala.concurrent.duration._
 
   private val openDuration: FiniteDuration = 5 minute
   private val closeDuration: FiniteDuration = 3 minute
@@ -51,12 +51,7 @@ class RareBooks extends Actor with ActorLogging with Stash {
   }
 
   private def createLibrarian(): ActorRef = {
-<<<<<<< HEAD
-//    context.actorOf(Librarian.props(findBookDuration), "librarian")
-    _
-=======
     context.actorOf(Librarian.props(findBookDuration), "librarian")
->>>>>>> Initial Commit
   }
 
 }
