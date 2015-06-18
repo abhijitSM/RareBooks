@@ -1,6 +1,9 @@
 package com.rarebooks.library
 
+
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+
+import scala.util.Random
 
 /**
  * Created by abhijitsingh on 18/06/15.
@@ -47,7 +50,9 @@ class Customer(rareBooks: ActorRef, odds: Int, tolerance: Int)
    * Method for requesting book information by topic.
    */
   private def requestBookInfo(): Unit =
-    rareBooks ! FindBookByTopic(Set(Asia))
+    rareBooks ! FindBookByTopic(Set(pickTopic()))
+
+  private val viableTopics = List(Asia, Africa, Greece, Philosophy)
 
   /**
    * Simulate customer picking topic to request. Based on the odds they will randomly
@@ -56,10 +61,12 @@ pick a viable topic, otherwise
    *
    * @return topic for book information request
    */
-  //  private def pickTopic: Topic =
-  //    if (Random.nextInt(100) < state.model.odds)
-  //      viableTopics(Random.nextInt(viableTopics.size))
-  //    else Unknown
+  private def pickTopic(): Topic =
+    if (Random.nextInt(10) < state.model.odds) {
+      println(s"seed ${Random.nextInt(viableTopics.size - 1)}")
+      viableTopics(Random.nextInt(viableTopics.size - 1))
+    }
+    else Unknown
 
 }
 

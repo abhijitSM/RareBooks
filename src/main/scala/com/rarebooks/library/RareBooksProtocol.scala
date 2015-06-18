@@ -24,6 +24,8 @@ object RareBooksProtocol {
 
   case object Gilgamesh extends Topic
 
+  case object Unknown extends Topic
+
   /**
    * Card trait for book cards.
    */
